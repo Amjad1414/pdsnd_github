@@ -102,8 +102,8 @@ def station_stats(df):
 
     # TO DO: display most commonly used start station
     count_of_start=df['Start Station'].value_counts()
-    max_count_of_start=max(count_of_start)
-    print('The most popular start station is: {}, count: {}'.format(count_of_start.loc[count_of_start==max_count_of_start].index[0],max_count_of_start))
+    max_start=max(count_of_start)
+    print('The most popular start station is: {}, count: {}'.format(count_of_start.loc[count_of_start==max_start].index[0],max_start))
     # TO DO: display most commonly used end station
     count_of_end=df['End Station'].value_counts()
     max_count_of_end=max(count_of_end)
