@@ -102,8 +102,8 @@ def station_stats(df):
 
     # TO DO: display most commonly used start station
     count_of_start=df['Start Station'].value_counts()
-    max_count_of_start=max(count_of_start)
-    print('The most popular start station is: {}, count: {}'.format(count_of_start.loc[count_of_start==max_count_of_start].index[0],max_count_of_start))
+    max_start=max(count_of_start)
+    print('The most popular start station is: {}, count: {}'.format(count_of_start.loc[count_of_start==max_start].index[0],max_start))
     # TO DO: display most commonly used end station
     count_of_end=df['End Station'].value_counts()
     max_count_of_end=max(count_of_end)
@@ -183,11 +183,14 @@ def raw(df):
             row=df.iloc[i]
             print(row)
         answer=input("Would you like to view individual trip data? Type 'yes' or 'no'\n")
-        answer=answer.lower()
-        while answer not in ['yes','no']:
-            print("Please make sure you enter 'yes' or 'no'")
-            answer=input("Would you like to view individual trip data? Type 'yes' or 'no'\n")
-            answer=answer.lower()
+        answer=input_checker(answer)
+
+def input_checker(value):
+    value=value.lower()
+    while value not in ['yes','no']:
+        print("Please make sure you enter 'yes' or 'no'")
+        value=input("\nwould you like to try again? Type 'yes' or 'no'.\n").lower()
+    return value
 
 def main():
     while True:
@@ -199,11 +202,7 @@ def main():
         user_stats(df,city)
         raw(df)
         restart = input('\nWould you like to restart? Enter yes or no.\n')
-        restart=restart.lower()
-        while restart not in ['yes','no']:
-            print("Please make sure you enter 'yes' or 'no' ")
-            restart = input('\nWould you like to restart? Enter yes or no.\n')
-            restart=restart.lower()
+        restart=input_checker(restart)
         if restart != 'yes':
             break
 
